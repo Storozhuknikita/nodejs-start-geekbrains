@@ -12,3 +12,7 @@ cursor
 .reset()
 .bg.reset()
 .write('\n');
+
+
+const user = require('./lesson2')
+console.log(user)
