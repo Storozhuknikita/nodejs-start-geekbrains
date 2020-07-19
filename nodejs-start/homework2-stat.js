@@ -1,4 +1,4 @@
-ar fs = require('fs');
+var fs = require('fs');
 
 fs.readFile('homework2-log.txt', 'utf8', function (err, data) {
     if (err) {
