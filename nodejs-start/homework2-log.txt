@@ -1,0 +1,6 @@
+Win
+Loss
+Loss
+Win
+Win
+Loss
