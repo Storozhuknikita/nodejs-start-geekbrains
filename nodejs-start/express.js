@@ -1,12 +1,11 @@
 const express = require('express')
-const consolidate = require('consolidate')
+//const consolidate = require('consolidate')
+const handlebars = require('express-handlebars')
 const path = require('path') 
 const mongoose = require('mongoose') // для работы с базой
 var config = require('./config') // настройки
-
 const session = require('express-session')
 const MongoStore = require('connect-mongo')(session)
-
 
 const app = express() // создаем приложение
 
@@ -21,13 +20,14 @@ mongoose.connect(`mongodb://127.0.0.1:${config.mongoosePort}/todo`, {
 }) // соединение с базой
 
 // какой шаблонизатор используется
-app.engine('hbs', consolidate.handlebars)
-app.set('view engine', 'hbs')
+app.engine('hbs', handlebars({defaultLayout: 'layout'})) // указывает layout
 app.set('views', path.resolve(__dirname, 'views'))
+app.set('view engine', 'hbs')
 
 //Middleware для работы с form
 app.use(express.urlencoded({extended: false}))
 
+// Сессии
 app.use(session({
     resave: true,
     saveUninitialized: false,
